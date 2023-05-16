@@ -1,0 +1,22 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.example-card {
+  width: 18rem;
+  height: fit-content;
+}
+
+mat-card-content {
+  padding-top: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#buttons {
+  padding-left: 60%;
+  display: flex;
+  justify-content: space-between;
+}

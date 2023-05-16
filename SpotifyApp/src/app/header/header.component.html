@@ -1,0 +1,15 @@
+<p>
+    <mat-toolbar color="basic">
+        <i class="fa-brands fa-spotify fa-lg" style="color: #24f948; font-size: 45px;"></i>
+        <span style="font-size: 30px;" routerLink="">Spotify</span>
+        <span class="example-spacer"></span>
+        <span *ngIf="log">
+            <span routerLink="/signUp">Sign Up</span>
+            <span routerLink="/login">Login</span>
+        </span>
+        <span *ngIf="!log">
+            <span>{{loginmail}}</span>
+            <span (click)="logOut()" routerLink="/home"><mat-icon>exit_to_app</mat-icon></span>
+        </span>
+    </mat-toolbar>
+</p>

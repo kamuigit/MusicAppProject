@@ -1,0 +1,96 @@
+<div class="container-fluid  mt-1 ">
+    <mat-toolbar color="basic">
+        <p>All Songs</p>
+    </mat-toolbar>
+    <div class="row ms-4">
+        <div class="col m-1" *ngFor="let a of songs | async; ">
+            <mat-card class="example-card">
+                <img mat-card-image src="{{a.songPic}}" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    {{a.songName }}
+                    <span style="padding: 5px; margin: 0%;"></span>
+                    {{a.duration}}
+                    <span id="buttons">
+                        <button mat-mini-fab color="accent">
+                            <mat-icon color="primary">play_circle_filled</mat-icon>
+                        </button>
+                        <button mat-mini-fab color="accent" [matMenuTriggerFor]="menu"
+                            aria-label="Example icon-button with a menu" (click)="getSongdata(a)"
+                            [disabled]="!playlist">
+                            <mat-icon color="primary">playlist_add</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <span>&nbsp;Add to Playlist</span>
+                            <span *ngFor="let b of playlist;">
+                                <button mat-menu-item (click)="addNewSong(b.playlistName)">
+                                    <span>{{b.playlistName}}</span>
+                                </button>
+                            </span>
+                        </mat-menu>
+
+                    </span>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid  mt-1">
+    <form (ngSubmit)="adPlaylist(playlog)" [formGroup]="playlog">
+        <mat-expansion-panel hideToggle style="background-color: #212121;">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h2 class="m-0">Playlists
+                    </h2>
+                </mat-panel-title>
+                <mat-icon color="primary">add</mat-icon>
+            </mat-expansion-panel-header>
+
+            <label for="playlistName">Enter New Playlist Name :</label>
+            &nbsp;&nbsp;&nbsp;
+            <mat-form-field appearance="fill">
+                <mat-label>Playlist Name</mat-label>
+                <input matInput type="text" name="playlistName" formControlName="playlistName">
+            </mat-form-field>
+            &nbsp;&nbsp;&nbsp;
+            <button mat-button-raised type="submit" color="primary"><mat-icon>save</mat-icon></button>
+
+        </mat-expansion-panel>
+    </form>
+    <div class="container-fluid">
+        <div id="playlists" class="mt-2">
+            <!-- [formGroup]="playlists" -->
+            <!-- playlists -->
+            <!-- <mat-form-field appearance="fill">
+            <input matInput type="text" formControlName="playlistName">
+        </mat-form-field>
+        <button mat-button color="primary"><mat-icon>save</mat-icon></button> -->
+            <p *ngIf="!playlist">No Playlist available</p>
+            <div class="row ms-4" *ngFor="let b of playlist;">
+                <mat-toolbar color="primary">
+                    <p>{{b.playlistName}}</p>
+                    <span class="example-spacer"></span>
+                    <button mat-button
+                        (click)="playlistTobeDeleted(b.playlistName)"><mat-icon>delete</mat-icon></button>
+                </mat-toolbar>
+                <div class="col m-1" *ngFor="let c of b.songs; ">
+                    <mat-card class="example-card">
+                        <img mat-card-image src="{{c.songPic}}" alt="Photo of a Shiba Inu">
+                        <mat-card-content>
+                            <span>
+                                {{c.songName }}
+                            </span>
+                            <button mat-fab color="accent">
+                                <mat-icon>play_circle_filled</mat-icon>
+                            </button>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div>
+    <app-play-song></app-play-song>
+</div> -->

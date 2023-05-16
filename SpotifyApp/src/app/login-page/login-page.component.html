@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-center mt-5 ">
+    <div>
+        <form (ngSubmit)="loginCheck(login)" [formGroup]="login">
+            <div>
+                <label for="userName" class="me-5">Enter Email - Id :</label>
+                <mat-form-field appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input type="text" matInput name="userName" formControlName="userName">
+                    <mat-error class="error" *ngIf="userName?.errors?.['required']">
+                        *Invalid username
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <label for="password" class="me-5">Enter Password :</label>
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" name="password" formControlName="password">
+                    <mat-error class="error" *ngIf="password?.errors?.['required']">
+                        *Invalid password
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <button mat-raised-button color="accent" type="submit">
+                    Login
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

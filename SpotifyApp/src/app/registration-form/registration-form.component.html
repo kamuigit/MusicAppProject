@@ -1,0 +1,66 @@
+<div style="margin-left: 200px; margin-top: 20px;">
+    <form class="container ms-5" [formGroup]="register" (ngSubmit)="registerData(register)">
+        <div class="row">
+            <mat-form-field class="col">
+                <mat-label>User Name</mat-label>
+                <input matInput type="text" name="userName" formControlName="userName">
+                <mat-error class="error"
+                    *ngIf="userName?.errors?.['required'] && (userName?.dirty || userName?.touched)">​
+                    UserName is required​
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput type="email" name="email" formControlName="email" email>
+                <mat-error class="error" *ngIf="email?.errors?.['email']">​
+                    Enter valid email address
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row ">
+            <mat-form-field class="col">
+                <mat-label>Password</mat-label>
+                <input matInput type="text" name="password" formControlName="password">
+            </mat-form-field>
+        </div>
+        <div class="row mb-2 ms-1">
+            <label>Gender</label>
+            <mat-radio-group class="col" name="gender" formControlName="gender">
+                <mat-radio-button value="Male">Male </mat-radio-button>
+                <mat-radio-button value="Female">Female </mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="row">
+            <mat-form-field>
+                <mat-label>Age</mat-label>
+                <input matInput type="text" name="age" formControlName="age">
+                <mat-error class="error" *ngIf="age?.errors?.['ageCheck']">​
+                    Age must be 18 years and above
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field>
+                <mat-label>Phone Number</mat-label>
+                <input matInput type="text" name="phone" formControlName="phone" pattern="[7-9][0-9]{9}" minlength="10">
+                <mat-error class="error" *ngIf="phone?.errors?.['minlength'] || phone?.errors?.['pattern']">
+                    Valid phone number contains 10 digits starting with 7/8/9
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <label class="d-block">Address</label>
+            <mat-form-field class="col">
+                <mat-label>Address</mat-label>
+                <input matInput type="text" name="address" formControlName="address">
+            </mat-form-field>
+        </div>
+
+        &nbsp;&nbsp;&nbsp;
+        <button mat-raised-button color="accent" type="submit" [disabled]="register.invalid"
+            style="padding: 20px;font-size: large;margin-top: 20px;">Sign
+            Up</button>
+    </form>
+</div>

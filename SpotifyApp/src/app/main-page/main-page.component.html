@@ -1,0 +1,20 @@
+<div class="container-fluid  mt-1 " id="cont">
+    <div class="row ms-4">
+        <div class="col m-1" *ngFor="let a of songs | async; ">
+            <mat-card class="example-card">
+                <img mat-card-image src="{{a.songPic}}" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    <span>
+                        {{a.songName }}
+                    </span>
+                    <span>
+                        {{a.duration}}
+                    </span>
+                    <button mat-fab color="accent" (click)="message()">
+                        <mat-icon>play_circle_filled</mat-icon>
+                    </button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
